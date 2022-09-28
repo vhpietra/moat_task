@@ -47,11 +47,16 @@ class AlbumsController < ApplicationController
 
   # DELETE /albums/1 or /albums/1.json
   def destroy
-    @album.destroy
-
+    session[:current_user] = current_user
     respond_to do |format|
-      format.html { redirect_to albums_url, notice: 'Album was successfully destroyed.' }
-      format.json { head :no_content }
+      if current_user.role_id == 1
+        @album.destroy
+        format.html { redirect_to albums_url, notice: 'Album was successfully destroyed.' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to albums_url, notice: 'You do not have permissions to delete an Album' }
+        format.json { head :no_content }
+      end
     end
   end
 

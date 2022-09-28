@@ -12,11 +12,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     @user = User.new(user_params)
-
     respond_to do |format|
       if @user.save
         session[:user_id] = @user_id
-        redirect_to new_user_session_path
         format.html { redirect_to session_path(@user), notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
@@ -75,6 +73,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   private
 
   def user_params
-    params.require(:user).permit(:full_name, :username, :email, :password, :password_confirmation, :role)
+    params.require(:user).permit(:full_name, :username, :email, :password, :password_confirmation, :role_id)
   end
 end
