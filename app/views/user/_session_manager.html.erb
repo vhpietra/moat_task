@@ -5,11 +5,9 @@
     </a>
     <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
       <li><%= link_to "New Album", new_album_path, class:"dropdown-item" %>
-        <li><a class="dropdown-item" href="#">Action</a></li>
         <%= link_to "Edit Account", edit_user_registration_path, class:"dropdown-item" %>
         <li><hr class="dropdown-divider"></li>
         <%= button_to "Sign out", destroy_user_session_path, method: :delete, class:"dropdown-item" %>
-        <li><a class="dropdown-item" href="#">Something else here</a></li>
       </ul>
     </li>
   <% else %>
