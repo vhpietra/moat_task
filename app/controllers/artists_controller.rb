@@ -1,5 +1,5 @@
 class ArtistsController < ApplicationController
-  def index; end
+  def list; end
 
   def search
     artist = find_artist(params[:artist_id])

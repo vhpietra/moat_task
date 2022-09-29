@@ -1,6 +1,5 @@
 class AlbumsController < ApplicationController
   before_action :set_album, only: %i[show edit update destroy]
-  before_action :authenticate_user!
   # GET /albums or /albums.json
   def index
     @albums = Album.all.order(created_at: :desc)
@@ -20,7 +19,6 @@ class AlbumsController < ApplicationController
   # POST /albums or /albums.json
   def create
     @album = Album.new(album_params)
-    @album.user = current_user
     respond_to do |format|
       if @album.save
         format.html { redirect_to album_url(@album), notice: 'Album was successfully created.' }
